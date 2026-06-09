@@ -11,7 +11,8 @@ Route::get('/', function () {
 Route::get('/produtos', [ProdutoController::class , 'index']);
 Route::post('/produtos', [ProdutoController::class , 'store']);
 
-Route::post('/livros', [LivroController::class , 'index']);
-  ->name('livros.index');
-Route::post('/livros', [LivroController::class , 'store']);
-  ->name('livros.store');
+Route::post('/livros', [LivroController::class , 'index'])
+  -> name('livros.index');
+
+Route::post('/livros', [LivroController::class , 'store'])
+  -> name('livros.store');
