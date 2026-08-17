@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title' , 'Projeto PW3')</title>
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <header class="mb-6 rounded-2xl border border-slate-200 bg-white/90 px-5 py-4 shadow-sm backdrop-blur">
