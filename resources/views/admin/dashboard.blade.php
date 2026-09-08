@@ -9,7 +9,7 @@
         <h2 class="text-3xl font-bold text-slate-900">Painel Administrativo</h2>
         <p class="text-slate-600">Resumo rápido do sistema para tomada de decisão.</p>
     </div>
-    <a href="#" class="rounded-lg bg-slate-900 px-4 py-2 font-medium text-white hover:bg-slate-700">
+    <a href="/usuarios/novo" class="rounded-lg bg-slate-900 px-4 py-2 font-medium text-white hover:bg-slate-700">
         Novo registro
     </a>
 </section>
@@ -57,6 +57,24 @@
                     <td class="py-3">Equipe C</td>
                     <td class="py-3"><span class="rounded-full bg-rose-100 px-3 py-1 text-rose-700">Atrasado</span></td>
                 </tr>
+                {{-- Versão anterior: Registros estáticos fixos no HTML --}}
+<tr>
+    <td class="py-3 font-medium text-slate-900">Carlos Silva</td>
+    <td class="py-3 text-slate-600">carlos@escola.sp.gov.br</td>
+    <td class="py-3"><span class="rounded-full bg-emerald-100 px-3 py-1 text-emerald-700">Ativo</span></td>
+</tr>
+
+{{-- Próximas aulas: Registros dinâmicos com Blade e Eloquent --}}
+@php
+    $users = App\Models\User::all();
+@endphp
+@foreach ($users as $user)
+    <tr class="border-b border-slate-100">
+        <td class="py-3 font-medium text-slate-900">{{ $user->name }}</td>
+        <td class="py-3 text-slate-600">{{ $user->email }}</td>
+        <td class="py-3 text-slate-500">{{ $user->created_at->format('d/m/Y') }}</td>
+    </tr>
+@endforeach
             </tbody>
         </table>
     </div>
