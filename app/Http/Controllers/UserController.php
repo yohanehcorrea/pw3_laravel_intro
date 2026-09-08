@@ -7,6 +7,24 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $busca = $request->input('busca');
+
+        if ($busca){
+            $usuarios = User::where('name', 'like', "%{$busca}%", 'and')
+              ->oderBy('name' , 'ASC')
+              ->get();
+             //select * from user where name = 'ana'
+             //select * from user where name like '%ana%'
+        } else {
+            $usuarios = User::orderBy('name', 'ASC')->get();
+        }
+       //Retorna a view do painel passando a coleçao de usuarios e o termo de pesquisa
+        return view('admin.dashboard' , compact('usuarios', 'busca'));
+    }
+    
     /**
      * Exibe o formulario de cadastro de usuarios
      */
