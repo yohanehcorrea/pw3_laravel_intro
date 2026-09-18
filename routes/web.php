@@ -9,6 +9,13 @@ Route::get('/', function () {
     return view('home');
 });
 
+use App\Http\Controllers\EventoController;
+
+// Rotas da Agenda de Eventos
+Route::get('/eventos', [EventoController::class, 'index']);
+Route::get('/eventos/novo', [EventoController::class, 'create']);
+Route::post('/eventos', [EventoController::class, 'store']);
+
 Route::view('/landing' , 'landing');
 Route::view('/admin' , 'admin.dashboard');
 
