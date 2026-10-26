@@ -4,6 +4,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LivroController;
+use Illuminate\Support\Facades\BD;
 
 Route::get('/', function () {
     return view('home');
@@ -30,4 +31,20 @@ Route::get('/teste-orm' , function() {
 
   return User::all();
 
+});
+
+Routte::get('/lab-seguranca', function (Request $request) {
+    $termo = $request->query('busca', '');
+
+    $resultadoVulneravel = [];
+    $erroVulneravel = null;
+    
+    if ($termo !== '') {
+        try{
+            $resultadoVulneravel = DB::select("SELECT id, name, email FROM
+            users WHERE name = '$termo'");
+        } catch (\Exception $e) {
+            $erroVulneravel = $e->getMessage();
+        }
+    }
 });
